@@ -3,6 +3,9 @@ export const CreateBlog = `mutation($name:String!){
     name: $name
   }) {
     id
+    name
+    updatedAt
+    createdAt
   }
 }`;
 

@@ -5,9 +5,13 @@ import { Blog } from './components';
 
 function App() {
   const [blogInfo, setBlogInfo] = useState(null);
-
   const [blogNameInput, setBlogNameInput] = useState('');
 
+  useEffect(() => {
+    const subscription = api.subscriptions.onCreateBlogName();
+
+    return () => subscription.unsubscribe();
+  }, []);
   const handleChange = (e) => {
     setBlogNameInput(e.target.value);
   };

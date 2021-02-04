@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import Amplify from '@aws-amplify/core';
+
+import config from './aws-exports';
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// 아래 tutorial 진행
+// https://acloudguru.com/blog/engineering/8-steps-to-building-your-own-serverless-graphql-api-using-aws-amplify
+
+Amplify.configure(config);
 
 ReactDOM.render(
   <React.StrictMode>

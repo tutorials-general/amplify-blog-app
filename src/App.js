@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import api from './api';
+import { Blog } from './components';
 
 function App() {
-  const [blogId, setBlogID] = useState('');
-  const [blogName: setBlogName] = useState('');
+  const [blogInfo, setBlogInfo] = useState(null);
+
   const [blogNameInput, setBlogNameInput] = useState('');
 
   const handleChange = (e) => {
@@ -12,24 +13,24 @@ function App() {
   };
   const createBlogHandler = async () => {
     const createdResult = await api.mutations.createBlog({
-      name: 'MyFirstBlog',
+      name: blogNameInput,
     });
-    console.log('createdResult', createdResult);
     const blogId = createdResult.id;
-    
+
     await loadBlog(blogId);
   };
 
   const loadBlog = async (blogId) => {
-    const getBlogResult = await api.queries.getBlog({ blogId });
-    console.log('getBlogResult', getBlogResult);
+    const getBlogResult = await api.queries.getBlogName({ blogId });
+    setBlogInfo(getBlogResult);
   };
-  return (
-    <div>
-      <div>blog name: {blogName ? blogName : 'no blog'}</div>
+  return blogInfo ? (
+    <Blog blogInfo={blogInfo} />
+  ) : (
+    <>
       <input type="text" value={blogNameInput} onChange={handleChange} />
       <div onClick={createBlogHandler}>create blog</div>
-    </div>
+    </>
   );
 }
 

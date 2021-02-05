@@ -25,7 +25,7 @@ function App() {
   };
 
   const loadBlog = async (blogId) => {
-    const getBlogResult = await api.queries.getBlogName({ blogId });
+    const getBlogResult = await api.queries.getBlog({ blogId });
     setBlogInfo(getBlogResult);
   };
   return blogInfo ? (

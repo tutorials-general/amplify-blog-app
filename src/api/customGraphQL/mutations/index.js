@@ -1,3 +1,5 @@
+export * from '../../../graphql/mutations';
+
 export const CreateBlog = `mutation($name:String!){
   createBlog(input:{
     name: $name

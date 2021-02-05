@@ -1,3 +1,5 @@
+export * from '../../../graphql/queries';
+
 export const GetBlog = /* GraphQL */ `
   query($blogId: ID!) {
     getBlog(id: $blogId) {
